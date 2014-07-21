@@ -1,0 +1,63 @@
+body {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+// container of #output
+#output-container {
+  display: none; // changed with jQuery
+  margin-top: 2em;
+  border: 1px solid #ccc;
+  padding: 1em;
+}
+
+// copy button
+#copy {
+  float: right;
+}
+
+
+// all the styles below must match with formatSpan.js
+
+// players list
+.players {
+  font-size: .85em;
+}
+.player { // a player in the players list
+  white-space: nowrap;
+}
+.player-active { // a player involved in the final street, or is all-in
+  color: #c00;
+}
+.player-inactive { // a player not considered active
+  color: #888;
+  font-style: italic;
+}
+
+// actions
+.action-bet { // aggressive action
+  color: #c00;
+}
+.action-fold { // fold
+  color: #888;
+  font-style: italic;
+}
+
+// cards
+.card {
+  font-weight: bold;
+}
+.card-s { // spade
+  color: #000;
+}
+.card-h { // heart
+  color: #f00;
+}
+.card-c { // club
+  color: #080;
+}
+.card-d { // diamond
+  color: #00f;
+}

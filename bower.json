@@ -1,0 +1,11 @@
+{
+  "name": "hand-history-converter",
+  "version": "0.1.0",
+  "dependencies": {
+    "bootstrap": "^3.0.3",
+    "jquery": "^1.11.0",
+    "lodash": "^2.4.1",
+    "zeroclipboard": "^2.1.5"
+  },
+  "devDependencies": {}
+}

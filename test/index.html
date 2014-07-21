@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QUnit test</title>
+  <link rel="stylesheet" href="bower_components/qunit/qunit/qunit.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="bower_components/qunit/qunit/qunit.js"></script>
+
+  <!-- app scripts -->
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/lodash/dist/lodash.js"></script>
+  <script src="../bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
+  <script src="../scripts/formatSpan.js"></script>
+  <script src="../scripts/Size.js"></script>
+  <script src="../scripts/Cards.js"></script>
+  <script src="../scripts/Player.js"></script>
+  <script src="../scripts/Players.js"></script>
+  <script src="../scripts/actionTypes.js"></script>
+  <script src="../scripts/Action.js"></script>
+  <script src="../scripts/Street.js"></script>
+  <script src="../scripts/Parser.js"></script>
+  <script src="../scripts/Hand.js"></script>
+  <script src="../scripts/convert.js"></script>
+  <script src="../scripts/main.js"></script>
+
+  <!-- tests -->
+  <script>
+    var hh = 'PokerStars Zoom Hand #999999999999:  Hold\'em No Limit ($0.01/$0.02) - 1970/01/01 00:00:00 ET\r\nTable \'McNaught\' 9-max Seat #1 is the button\r\nSeat 1: Race Beetle 123 ($1.97 in chips) \r\nSeat 2: brömideuranium ($2.10 in chips) \r\nSeat 3: ricketysnotty ($2 in chips) \r\nSeat 4: mindlessswaggering ($2.14 in chips) \r\nSeat 5: jonesvessels ($1.92 in chips) \r\nSeat 6: freegoring ($5.38 in chips) \r\nSeat 7: burgerrain ($4.07 in chips) \r\nSeat 8: buns: hiss ($2.21 in chips) \r\nSeat 9: rancher\'s pigeon ($1.68 in chips) \r\nbrömideuranium: posts small blind $0.01\r\nricketysnotty: posts big blind $0.02\r\n*** HOLE CARDS ***\r\nDealt to burgerrain [Qs Kd]\r\nmindlessswaggering: folds \r\njonesvessels: folds \r\nfreegoring: folds \r\nburgerrain: raises $0.02 to $0.04\r\nbuns: hiss: calls $0.04\r\nrancher\'s pigeon: folds \r\nRace Beetle 123: folds \r\nbrömideuranium: folds \r\nricketysnotty: folds \r\n*** FLOP *** [2c 6c 9h]\r\nburgerrain: bets $0.08\r\nbuns: hiss: calls $0.08\r\n*** TURN *** [2c 6c 9h] [Qd]\r\nburgerrain: checks \r\nbuns: hiss: bets $0.12\r\nburgerrain: calls $0.12\r\n*** RIVER *** [2c 6c 9h Qd] [Ah]\r\nburgerrain: checks \r\nbuns: hiss: bets $0.30\r\nburgerrain: folds \r\nUncalled bet ($0.30) returned to buns: hiss\r\nbuns: hiss collected $0.49 from pot\r\nbuns: hiss: doesn\'t show hand \r\n*** SUMMARY ***\r\nTotal pot $0.51 | Rake $0.02 \r\nBoard [2c 6c 9h Qd Ah]\r\nSeat 1: Race Beetle 123 (button) folded before Flop (didn\'t bet)\r\nSeat 2: brömideuranium (small blind) folded before Flop\r\nSeat 3: ricketysnotty (big blind) folded before Flop\r\nSeat 4: mindlessswaggering folded before Flop (didn\'t bet)\r\nSeat 5: jonesvessels folded before Flop (didn\'t bet)\r\nSeat 6: freegoring folded before Flop (didn\'t bet)\r\nSeat 7: burgerrain folded on the River\r\nSeat 8: buns: hiss collected ($0.49)\r\nSeat 9: rancher\'s pigeon folded before Flop (didn\'t bet)';
+    var hand = new handHistoryConverter.Hand(hh);
+
+    QUnit.test('Hand 1', function(assert) {
+      assert.equal(hand.site, 'PokerStars');
+      assert.equal(hand.label, 'Zoom Hold\'em No Limit ($0.01/$0.02)');
+      assert.equal(hand.type, 'holdem');
+      assert.equal(hand.sbSize.amount, 0.01);
+      assert.equal(hand.bbSize.amount, 0.02);
+      assert.equal(hand.currency, '$');
+
+      var hero = hand.players.get('burgerrain');
+      assert.equal(hero.isHero, true);
+      assert.equal(hero.seatNumber, 7);
+      assert.equal(hero.position, 'MP1');
+      assert.equal(hero.isActive, true);
+
+      assert.equal(hand.potSize.amount, 0.51);
+    });
+  </script>
+</body>
+</html>
